@@ -1,13 +1,19 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+[RequireComponent(typeof(Mover))]
+public class Patroller : MonoBehaviour
 {
-    [SerializeField] private float _speed = 5;
     [SerializeField] private Transform[] _waypoints;
 
+    private Mover _mover;
     private Transform _currentWaypoint;
     private int _currentWaypointIndex = 0;
     private float _sufficientDistanceToWaypoint = 0.1f;
+
+    private void Awake()
+    {
+        _mover = GetComponent<Mover>();
+    }
 
     private void Start()
     {
@@ -16,7 +22,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, _currentWaypoint.position, _speed * Time.deltaTime);
+        _mover.Move(Mathf.Sign(_currentWaypoint.position.x - transform.position.x));
 
         if ((_currentWaypoint.position - transform.position).sqrMagnitude <= _sufficientDistanceToWaypoint * _sufficientDistanceToWaypoint)
         {
