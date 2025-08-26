@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5087028395909674531}
   - component: {fileID: 1629731435896124571}
   m_Layer: 0
-  m_Name: Coin Spawn Point
+  m_Name: Spawn Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,6 +41,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8478855377279692373}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ba0f4968fc46434b941d00cfe9b387f, type: 3}
+  m_Script: {fileID: 11500000, guid: 230dbeb3bdda73e468c555a02e47b340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

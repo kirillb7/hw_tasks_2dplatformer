@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 9065653867379327332}
   - component: {fileID: 7688272953277966710}
   - component: {fileID: 5498378613156631419}
-  - component: {fileID: 8528471192888134457}
+  - component: {fileID: -39711810759619477}
   m_Layer: 6
-  m_Name: Coin
+  m_Name: Medkit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -121,7 +121,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &8528471192888134457
+--- !u!114 &-39711810759619477
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,5 +133,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f602664102b03a444b862177ceae2ad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthValue: 0
-  _moneyValue: 1
+  _healthValue: 10
+  _moneyValue: 0

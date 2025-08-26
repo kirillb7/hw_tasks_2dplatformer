@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class CoinSpawner : MonoBehaviour
+public class ItemSpawner : MonoBehaviour
 {
-    [SerializeField] private List<CoinSpawnPoint> _spawnPoints;
-    [SerializeField] private Coin _prefab;
+    [SerializeField] private List<ItemSpawnPoint> _spawnPoints;
+    [SerializeField] private Item _prefab;
     [SerializeField] private float _spawnRate = 5f;
     [SerializeField] private int _poolCapacity = 5;
     [SerializeField] private int _poolMaxSize = 5;
 
-    private ObjectPool<Coin> _pool;
+    private ObjectPool<Item> _pool;
 
     private void Awake()
     {
-        _pool = new ObjectPool<Coin>(
+        _pool = new ObjectPool<Item>(
             createFunc: () => Instantiate(_prefab),
-            actionOnGet: (coin) => ActivateCoin(coin),
-            actionOnRelease: (coin) => DeactivateCoin(coin),
-            actionOnDestroy: (coin) => Destroy(coin),
+            actionOnGet: (item) => ActivateItem(item),
+            actionOnRelease: (item) => DeactivateItem(item),
+            actionOnDestroy: (item) => Destroy(item),
             collectionCheck: true,
             defaultCapacity: _poolCapacity,
             maxSize: _poolMaxSize);
@@ -30,23 +30,23 @@ public class CoinSpawner : MonoBehaviour
         StartCoroutine(Spawn());
     }
 
-    private void ActivateCoin(Coin coin)
+    private void ActivateItem(Item item)
     {
-        coin.gameObject.SetActive(true);
-        coin.Collected += _pool.Release;
+        item.gameObject.SetActive(true);
+        item.Collected += _pool.Release;
     }
 
-    private void DeactivateCoin(Coin coin)
+    private void DeactivateItem(Item item)
     {
-        coin.Collected -= _pool.Release;
-        coin.gameObject.SetActive(false);
+        item.Collected -= _pool.Release;
+        item.gameObject.SetActive(false);
     }
 
-    private bool TryGetSpawnPoint(out CoinSpawnPoint spawnPoint)
+    private bool TryGetSpawnPoint(out ItemSpawnPoint spawnPoint)
     {
-        List<CoinSpawnPoint> availableSpawnPoints = new List<CoinSpawnPoint>();
+        List<ItemSpawnPoint> availableSpawnPoints = new List<ItemSpawnPoint>();
 
-        foreach (CoinSpawnPoint point in _spawnPoints)
+        foreach (ItemSpawnPoint point in _spawnPoints)
         {
             if (point.IsAvailable())
             {
@@ -72,7 +72,7 @@ public class CoinSpawner : MonoBehaviour
 
         while (enabled)
         {
-            if (TryGetSpawnPoint(out CoinSpawnPoint spawnPoint))
+            if (TryGetSpawnPoint(out ItemSpawnPoint spawnPoint))
             {
                 _pool.Get().transform.position = spawnPoint.transform.position;
             }

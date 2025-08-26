@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Mover))]
@@ -17,22 +18,29 @@ public class Patroller : MonoBehaviour
 
     private void Start()
     {
-        SetNextWaypoint();
-    }
-
-    private void Update()
-    {
-        _mover.Move(Mathf.Sign(_currentWaypoint.position.x - transform.position.x));
-
-        if ((_currentWaypoint.position - transform.position).sqrMagnitude <= _sufficientDistanceToWaypoint * _sufficientDistanceToWaypoint)
-        {
-            SetNextWaypoint();
-        }
+        StartCoroutine(Patrol());
     }
 
     private void SetNextWaypoint()
     {
         _currentWaypointIndex = ++_currentWaypointIndex % _waypoints.Length;
         _currentWaypoint = _waypoints[_currentWaypointIndex];
+    }
+
+    private IEnumerator Patrol()
+    {
+        SetNextWaypoint();
+
+        while (isActiveAndEnabled)
+        {
+            _mover.Move(Mathf.Sign(_currentWaypoint.position.x - transform.position.x));
+
+            if ((_currentWaypoint.position - transform.position).sqrMagnitude <= _sufficientDistanceToWaypoint * _sufficientDistanceToWaypoint)
+            {
+                SetNextWaypoint();
+            }
+
+            yield return null;
+        }
     }
 }
