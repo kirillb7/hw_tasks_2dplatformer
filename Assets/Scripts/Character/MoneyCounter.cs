@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MoneyCounter : MonoBehaviour
 {
-    private int _money = 0;
+    private int _value = 0;
     private ItemCollector _itemCollector;
 
     private void Awake()
@@ -45,11 +45,11 @@ public class MoneyCounter : MonoBehaviour
 
     private void Gain(int amount)
     {
-        _money += amount;
+        _value += amount;
     }
 
     private void Lose(int amount)
     {
-        _money = Mathf.Clamp(_money - amount, 0, _money);
+        _value = Mathf.Clamp(_value - amount, 0, _value);
     }
 }

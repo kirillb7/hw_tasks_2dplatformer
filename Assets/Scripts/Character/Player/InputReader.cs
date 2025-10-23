@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class InputReader : MonoBehaviour
 {
-    private const string _horizontalAxis = "Horizontal";
-    private const KeyCode _jumpKey = KeyCode.W;
-    private const KeyCode _attackKey = KeyCode.Mouse0;
+    private const string HorizontalAxis = "Horizontal";
+    private const KeyCode JumpKey = KeyCode.W;
+    private const KeyCode AttackKey = KeyCode.Mouse0;
 
     public float Direction { get; private set; }
     public bool IsJumping { get; private set; }
@@ -12,9 +12,9 @@ public class InputReader : MonoBehaviour
 
     private void Update()
     {
-        Direction = Input.GetAxis(_horizontalAxis);
-        IsJumping = Input.GetKeyDown(_jumpKey);
-        IsAttacking = Input.GetKeyDown(_attackKey);
+        Direction = Input.GetAxis(HorizontalAxis);
+        IsJumping = Input.GetKeyDown(JumpKey);
+        IsAttacking = Input.GetKeyDown(AttackKey);
     }
 }
 

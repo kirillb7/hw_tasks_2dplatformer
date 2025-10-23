@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
     {
         if (_isFollowing)
         {
-            if (_playerDetector.TryFindPlayer(_attacker.Range, out _) && _canAttack)
+            if (_playerDetector.TryFind(_attacker.Range, out _) && _canAttack)
             {
                 _attacker.Attack();
 
@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            if (_playerDetector.TryFindPlayer(_visionRange, out Collider2D player))
+            if (_playerDetector.TryFind(_visionRange, out Collider2D player))
             {
                 _patroller.enabled = false;
                 _isFollowing = true;
