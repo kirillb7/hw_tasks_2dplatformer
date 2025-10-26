@@ -1,8 +1,8 @@
 using UnityEngine;
 
-abstract public class HealthDisplay : MonoBehaviour
+abstract public class ValueDisplay : MonoBehaviour
 {
-    [SerializeField] protected HealthCounter Counter;
+    [SerializeField] protected Counter Counter;
 
     private void OnEnable()
     {
@@ -14,5 +14,5 @@ abstract public class HealthDisplay : MonoBehaviour
         Counter.Changed -= OnChanged;
     }
 
-    abstract protected void OnChanged(float newValue, float newMaxValue);
+    abstract protected void OnChanged(int newValue, int newMaxValue);
 }

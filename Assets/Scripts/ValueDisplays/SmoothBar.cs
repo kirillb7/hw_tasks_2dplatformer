@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class HealthBarSmooth : HealthBar
+public class SmoothBar : Bar
 {
     [SerializeField] private float _speed = 0f;
 
@@ -16,9 +16,9 @@ public class HealthBarSmooth : HealthBar
         _currentValue = Display.value;
     }
 
-    protected override void OnChanged(float newValue, float newMaxValue)
+    protected override void OnChanged(int newValue, int newMaxValue)
     {
-        _targetValue = newValue / newMaxValue;
+        _targetValue = (float)newValue / newMaxValue;
 
         if (_coroutine != null)
         {

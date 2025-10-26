@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : HealthDisplay
+public class Bar : ValueDisplay
 {
     [SerializeField] protected Slider Display;
 
@@ -12,8 +12,8 @@ public class HealthBar : HealthDisplay
         Display.maxValue = 1;
     }
 
-    protected override void OnChanged(float newValue, float newMaxValue)
+    protected override void OnChanged(int newValue, int newMaxValue)
     {
-        Display.value = newValue / newMaxValue;
+        Display.value = (float)newValue / newMaxValue;
     }
 }

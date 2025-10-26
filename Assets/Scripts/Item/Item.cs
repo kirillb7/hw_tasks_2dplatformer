@@ -1,13 +1,11 @@
 using System;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+abstract public class Item : MonoBehaviour
 {
-    [SerializeField] private int _healthValue = 0;
-    [SerializeField] private int _moneyValue = 0;
+    [SerializeField] private int _value = 0;
 
-    public int HealthValue => _healthValue;
-    public int MoneyValue => _moneyValue;
+    public int Value => _value;
 
     public event Action<Item> Collected;
 
