@@ -6,13 +6,13 @@ public class TextDisplay : ValueDisplay
     [SerializeField] private TextMeshProUGUI _display;
     [SerializeField] private bool _isShowingMaxValue;
 
-    protected override void OnChanged(int newValue, int newMaxValue)
+    protected override void OnChanged(float newValue, float newMaxValue)
     {
-        string text = $"{newValue}";
+        string text = $"{(int)newValue}";
 
         if (_isShowingMaxValue)
         {
-            text += $"/{newMaxValue}";
+            text += $"/{(int)newMaxValue}";
         }
 
         _display.text = text;

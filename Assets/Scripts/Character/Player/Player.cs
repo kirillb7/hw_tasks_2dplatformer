@@ -9,6 +9,8 @@ using UnityEngine;
 [RequireComponent(typeof(Attacker))]
 public class Player : MonoBehaviour
 {
+    [SerializeField] private Ability _ability;
+
     private GroundDetector _groundDetector;
     private InputReader _inputReader;
     private PlayerSprite _sprite;
@@ -43,6 +45,11 @@ public class Player : MonoBehaviour
         if (_inputReader.IsAttacking)
         {
             _attacker.Attack();
+        }
+
+        if (_ability != null && _inputReader.IsUsingAbility && _ability.IsAvailable)
+        {
+            _ability.Activate();
         }
 
         _sprite.Animate(direction);

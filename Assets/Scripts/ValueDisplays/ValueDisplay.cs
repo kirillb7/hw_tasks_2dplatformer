@@ -14,5 +14,5 @@ abstract public class ValueDisplay : MonoBehaviour
         Counter.Changed -= OnChanged;
     }
 
-    abstract protected void OnChanged(int newValue, int newMaxValue);
+    abstract protected void OnChanged(float newValue, float newMaxValue);
 }

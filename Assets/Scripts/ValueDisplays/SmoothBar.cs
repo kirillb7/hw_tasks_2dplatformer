@@ -16,9 +16,9 @@ public class SmoothBar : Bar
         _currentValue = Display.value;
     }
 
-    protected override void OnChanged(int newValue, int newMaxValue)
+    protected override void OnChanged(float newValue, float newMaxValue)
     {
-        _targetValue = (float)newValue / newMaxValue;
+        _targetValue = newValue / newMaxValue;
 
         if (_coroutine != null)
         {

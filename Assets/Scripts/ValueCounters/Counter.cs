@@ -3,12 +3,12 @@ using UnityEngine;
 
 abstract public class Counter : MonoBehaviour
 {
-    [SerializeField] protected int MaxValue;
+    [SerializeField] protected float MaxValue;
 
-    protected int Value;
+    protected float Value;
     protected ItemCollector ItemCollector;
 
-    public event Action<int, int> Changed;
+    public event Action<float, float> Changed;
 
     private void Awake()
     {
@@ -36,7 +36,7 @@ abstract public class Counter : MonoBehaviour
         Changed?.Invoke(Value, MaxValue);
     }
 
-    public void Change(int amount)
+    public void Change(float amount)
     {
         Value = Mathf.Clamp(Value + amount, 0, MaxValue);
 

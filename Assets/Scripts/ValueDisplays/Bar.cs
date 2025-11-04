@@ -12,8 +12,8 @@ public class Bar : ValueDisplay
         Display.maxValue = 1;
     }
 
-    protected override void OnChanged(int newValue, int newMaxValue)
+    protected override void OnChanged(float newValue, float newMaxValue)
     {
-        Display.value = (float)newValue / newMaxValue;
+        Display.value = newValue / newMaxValue;
     }
 }

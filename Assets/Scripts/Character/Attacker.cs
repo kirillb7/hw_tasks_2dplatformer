@@ -3,7 +3,7 @@ using UnityEngine;
 public class Attacker : MonoBehaviour
 {
     [SerializeField] private float _range = 1f;
-    [SerializeField] private int _damage = 5;
+    [SerializeField] private float _damage = 5;
 
     public float Range => _range;
 
