@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(TimeCounter))]
@@ -6,12 +7,14 @@ abstract public class Ability : MonoBehaviour
     [SerializeField] protected float ActiveDuration;
     [SerializeField] protected float CooldownDuration;
     [SerializeField] protected float Range;
-    [SerializeField] protected Transform Visual;
 
     protected TimeCounter Counter;
 
     public bool IsAvailable { get; protected set; }
     public bool IsOnCooldown { get; protected set; }
+    public float GetRange => Range;
+
+    public event Action<bool> Toggled;
 
     private void Awake()
     {
@@ -34,16 +37,14 @@ abstract public class Ability : MonoBehaviour
     {
         IsAvailable = true;
         IsOnCooldown = false;
-        Visual.gameObject.SetActive(false);
-
-        Visual.localScale *= Range;
+        Toggled?.Invoke(false);
     }
 
     public void Activate()
     {
         IsAvailable = false;
         IsOnCooldown = false;
-        Visual.gameObject.SetActive(true);
+        Toggled?.Invoke(true);
 
         Counter.StartCount(ActiveDuration, isBackwards: true);
     }
@@ -52,7 +53,7 @@ abstract public class Ability : MonoBehaviour
 
     private void UpdateCooldown()
     {
-        Visual.gameObject.SetActive(false);
+        Toggled?.Invoke(false);
 
         if (IsOnCooldown)
         {

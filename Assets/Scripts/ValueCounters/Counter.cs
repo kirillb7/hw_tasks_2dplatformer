@@ -8,6 +8,9 @@ abstract public class Counter : MonoBehaviour
     protected float Value;
     protected ItemCollector ItemCollector;
 
+    public float GetValue => Value;
+    public float GetMaxValue => MaxValue;
+
     public event Action<float, float> Changed;
 
     private void Awake()

@@ -9,13 +9,13 @@ public class Vampirism : Ability
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, Range);
         HealthCounter targetHealth = null;
-        float lowestDistance = Range;
+        float lowestDistance = Range * Range;
 
         foreach (Collider2D hit in hits)
         {
             if (hit.gameObject != _userHealth.gameObject && hit.TryGetComponent(out HealthCounter healthCounter))
             {
-                float distance = Vector2.Distance(hit.ClosestPoint(transform.position), transform.position);
+                float distance = (hit.ClosestPoint(transform.position) - (Vector2)transform.position).sqrMagnitude;
 
                 if (distance <= lowestDistance)
                 {
@@ -27,8 +27,18 @@ public class Vampirism : Ability
 
         if (targetHealth != null)
         {
-            targetHealth.Change(-_damage);
-            _userHealth.Change(_damage);
+            float remainingHealth = targetHealth.GetValue;
+
+            if (remainingHealth > _damage)
+            {
+                _userHealth.Heal(_damage);
+            }
+            else
+            {
+                _userHealth.Heal(remainingHealth);
+            }
+
+            targetHealth.Damage(_damage);
         }
     }
 }

@@ -15,7 +15,7 @@ public class Attacker : MonoBehaviour
         {
             if (hit.gameObject != gameObject && hit.TryGetComponent(out HealthCounter healthCounter))
             {
-                healthCounter.Change(-_damage);
+                healthCounter.Damage(_damage);
             }
         }
     }
